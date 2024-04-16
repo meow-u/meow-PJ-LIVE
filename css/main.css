@@ -1,0 +1,944 @@
+@charset "utf-8";
+/* 스벅 PJ : 메인페이지 CSS - main.css */
+
+/* 리셋, 코아, 커먼 공통 외부CSS 합치기 */
+@import url("./reset.css");
+@import url("./core.css");
+@import url("./common.css");
+@import url("./grid_12_flex.css");
+
+/* 가상요소 js용 변수 */
+:root {
+  --after-transform: rotate(0deg);
+}
+
+/* 공사중 표시 */
+body * {
+  /* outline: 2px dashed #ff9f9f29; */
+}
+body {
+  /* 스티키gnb바 부모자격 */
+  position: relative;
+  overflow-y: scroll; 
+  /* 세로 스크롤 막대를 항상 표시하여 스크롤 가능한 경우에도 항상 표시됨 */
+}
+
+.temp-tit {
+  display: none;
+}
+/*________________ 1.상단영역 (공통) ________________*/
+/* common.css */
+
+/*________________ 2. 롤링배너 영역 (공통) _____________*/
+/* common.css */
+
+/*________________ 3. 라인안내 영역 (공통) ________________*/
+/* common.css */
+
+/*________________ 4. 리워드 영역 ________________*/
+/* 리워드박스 */
+.rewards {
+  color: white;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(var(--linear-gradient));
+  background-color: var(--sb-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+/* 리워드 스벅로고 */
+.rewards img {
+  width: 80%;
+  margin: 0px auto;
+  /* 비율유지 */
+  aspect-ratio: 247 / 215;
+}
+
+.rewards h2 {
+  font-size: min(2rem, 2.5vw);
+  padding-bottom: 1vw;
+}
+
+.rewards .col-4 div:nth-of-type(1) > p {
+  font-size: min(1.5rem, 1.7vw);
+  padding: 1vw 0px;
+}
+
+.rewards .col-4 div:nth-of-type(2) > p {
+  font-size: min(1.2rem, 1.5vw);
+  padding: 0.5vw;
+}
+/* 리워드 버튼 */
+.rewards .button {
+  position: relative;
+  padding: 0.3vw 0.8vw;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0.3vw;
+  display: inline-block;
+  top: 50%;
+  translate: 0px -50%;
+  cursor: pointer;
+  background: linear-gradient(45deg, rgb(71, 144, 255), rgb(255, 106, 230))
+    center center / 0% no-repeat;
+  transition: all 0.2s ease-in 0s;
+}
+/* 버튼호버시 */
+.rewards .button:hover {
+  background-size: 100%;
+}
+
+.rewards .button.b3 {
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.208);
+}
+
+.rewards .button > p {
+  font-size: min(1.2rem, 1.5vw);
+  white-space: nowrap;
+}
+
+.rewards > .col-3,
+.col-4 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 2vw 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rewards > .col-3:last-child > div {
+  height: 50%;
+}
+/*________________ 5. 뉴스 영역 ________________*/
+
+#news-area {
+  /* 가운데맞춤 */
+  left: 50%;
+  translate: -50%;
+  max-width: 2000px;
+  position: relative;
+}
+/* 긴 틈새막는 박스 */
+#news-area::after {
+  content: "";
+  top: 10%;
+  position: absolute;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 50%;
+  translate: -50%;
+  background-color: rgb(0, 0, 0);
+}
+
+/* 라운드 밝은 공간부분 */
+.news-area::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  bottom: 5px;
+  width: 100%;
+  height: 600px;
+  border-radius: 0px 0px 30% 30%;
+  background-color: var(--body-color);
+    /* 옆으로 넘치는부분 가림 */
+  overflow: hidden;
+}
+/* 작은 틈새막는 검정박스 (쌤이봐주신것) */
+.news-area::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  z-index: -2;
+  width: 100%;
+  height: 200px;
+  background-color: rgb(0, 0, 0);
+  
+  /* 옆으로 넘치는부분 가림 */
+  overflow: hidden;
+}
+
+/* 가로스크롤 위해 스티키적용 */
+.news-area {
+  position: sticky;
+  top: 0px;
+  height: 500px;
+  /* padding-bottom: 7%; */
+  
+  /* 옆으로 넘치는부분 가림 */
+  overflow: hidden;
+}
+/* 내부 각각뉴스 잘리지않도록 뉴스박스 보라드 적용 */
+section.news-area.inbox {
+  height: 600px;
+  border-radius: 0px 0px 30% 30%;
+}
+
+
+/* 가로스크롤박스 
+시작시 오른쪽에 위치해있기  */
+.news-area > .news-cont {
+  height: 100%;
+  translate: 55%;
+  position: relative;
+  transition: all 0.6s ease-out 0s;
+}
+/* 플랙스박스 */
+.col-12.news-col {
+  display: flex;
+  position: relative;
+  top: 30%;
+  /* 가로화면 줄어들때 같이 줄어들도록 vw씀 */
+  width: 300vw;
+  gap: 5vw;
+}
+
+
+/* 뉴스영역 시작 초록글자상자 */
+.newstxt > p {
+  border-radius: 18px;
+  width: 38vw;
+  font-size: min(4.5rem, 6vw);
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  background-color: var(--sb-color);
+  margin: 0px 35px;
+  border-bottom: rgb(255, 255, 255);
+  overflow: hidden;
+  padding: 10px;
+}
+
+/* p가상요소 애니 게이지바 */
+.news-area .col-12 .newstxt > p::after {
+  content: "";
+  position: relative;
+  display: block;
+  height: 4px;
+  width: 45%;
+  top: 2%;
+  left: 2%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  animation: 0.9s ease-in-out 0s infinite normal none running pAni;
+  transform-origin: right center;
+}
+/* 게이지바 애니 */
+@keyframes pAni {
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+/* 뉴스박스의 이미지의 부모박스 */
+.news-area .col-12 figure > a {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: block;
+  max-width: 260px;
+  max-height: 260px;
+  border-radius: 10%;
+}
+
+/* 이미지 */
+.news-area .col-12 a > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  transition: all 0.3s ease 0s;
+}
+
+/* 이미지 a박스 가상요소 */
+.news-area .col-12 figure > a::after {
+  content: "MORE VIEW";
+  color: transparent;
+  position: relative;
+  display: block;
+  translate: 0px -100%;
+  text-align: center;
+  line-height: 260px;
+  transition: all 0.3s ease 0.2s;
+  border-radius: 10%;
+}
+
+/* 이미지 a박스 호버시 이미지 */
+.news-area .col-12 a:hover img {
+  transform: scale(1.1);
+}
+/* 이미지 a박스 호버시 가상요소 (캡션박스)*/
+.news-area .col-12 a:hover::after {
+  color: white;
+  width: 100%;
+  height: 100%;
+  box-shadow: black 0px 0px 50px inset;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+
+/* 이미지아래 설명 */
+.newsbox a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--sb-color);
+}
+
+.newsbox a:nth-child(2) {
+  display: block;
+  text-align: center;
+}
+
+/* 뉴스박스공통 (이미지+캡션) */
+/* 부드러운 트랜지션 */
+.newsbox {
+  transition: all 0.3s linear 0s;
+}
+
+/* 뉴스박스 호버시 위로 트랜스폼 */
+figure {
+  /* 원본에줘서 왕복! */
+  transition: 0.3s 0.1s;
+}
+figure:hover {
+  translate: 0 -20%;
+  scale: 1.05;
+}
+
+
+/*________________ 6. 리저브소개 영역 ________________*/
+
+/* letter 부모자격 */
+.reserve-area.inbox{
+  position: relative;
+}
+/* 배경설정 */
+.reserve-area {
+  height: 280vw;
+  /* height: 600vw; */
+  background: url(../images/reserve_bg.jpg) no-repeat fixed center/cover;
+}
+.reserve-area > .cont-box {
+  background-image: linear-gradient(
+    to bottom,
+    #000000 25%,
+    transparent,
+    var(--body-color) 100%
+  );
+}
+
+/* 상단박스부모 */
+.reserve-area > .cont-box > .col-12 > .reservebox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 25%;
+  overflow: hidden;
+}
+
+/* 리저브 탑 로고*/
+.reserve-area > .cont-box > .col-12 img.reserve1 {
+  position: relative;
+  width: 45%;
+  filter: invert(0.9);
+  /* padding-bottom: 5%; */
+}
+/* 리저브 탑 이미지 */
+.reserve-area > .cont-box > .col-12 img.reserve2 {
+  position: relative;
+  width: 100%;
+  
+}
+/* 리저브 별 이미지 */
+.reserve-area > .cont-box > .col-12 img.reserve3 {
+  position: relative;
+  width: 10%;
+}
+
+
+.reservebox>div {
+  padding-bottom: 5%;
+  flex-basis: 100%;
+}
+
+.reservebox img {
+  left: 50%;
+  translate: -50% 0px;
+}
+
+/* 인포박스부모 */
+.reserve-area .infowrap {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+/* 인포박스전체 */
+/* .reserve-area .infowrap>.infobox{} */
+
+/* 인포박스개별 */
+.reserve-area .infowrap > .infobox {
+  padding-bottom: 15%;
+  width: 40%;
+}
+
+/* 인포박스 p */
+.reserve-area .infowrap > .infobox > p {
+  word-break: keep-all;
+  padding: 5% 10%;
+  line-height: 160%;
+  font-size: 2rem;
+  font-weight: bold;
+}
+/* 인포박스 p */
+.reserve-area .infowrap > .infobox.b4 {
+  border-radius: 0 250px 250px 0;
+  background-image: linear-gradient(var(--linear-gradient));
+  width: 70%;
+  margin-right: 30%;
+  background-color: var(--sb-color);
+  padding-bottom: 6%;
+}
+/* 인포박스 P 2 */
+.reserve-area .infowrap > .infobox > p:nth-child(2) {
+  text-align: justify;
+  font-size: 1.2rem;
+  padding: 0;
+  padding-top: 0%;
+  padding-left: 15%;
+  width: 60%;
+}
+
+/* 인포박스 img */
+.reserve-area .infowrap > .infobox img {
+  /* border-radius: 19%; */
+  width: 100%;
+  scale: 0.9;
+  background-color: #000000db;
+  /* padding: 13% 0; */
+  position: relative;
+  left: 50%;
+  translate: -50%;
+}
+/* 인포박스 img 2 */
+.reserve-area .infowrap > .infobox > div:nth-child(2) > img {
+  /* scale: 0.8; */
+  /* margin-left: -47%;
+  margin-top: -34%; */
+}
+
+.reserve-area .infowrap > .infobox.b4 img {
+  border-radius: 0;
+  background-color: transparent;
+  width: 30%;
+}
+
+.reserve-area .infowrap > .infobox.b4 > p:nth-child(2) {
+  border-bottom: 2px solid var(--body-color);
+  font-size: 1.4rem;
+  padding: 0;
+  padding-left: 10%;
+  width: 40%;
+}
+
+/* letter 부모박스 */
+.letterItems {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+/* letter p 공통 */
+.letterItems>p {
+  font-size: 15vw;
+  z-index: 1;
+  color: #fff;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  /* 트랜지션 */
+  transition: 1s;
+  transform: translate(0) scale(0);
+  opacity: 0;
+}
+/* letter 각각 위치 설정 */
+.letterItems>p:nth-child(1) {
+  top: 31%;
+  left: 46%;
+}
+.letterItems>p:nth-child(2) {
+  top: 41%;
+  left: 71%;
+}
+.letterItems>p:nth-child(3) {
+  top: 53%;
+  left: 80%;
+}
+.letterItems>p:nth-child(4) {
+  top: 56%;
+  left: 24%;
+}
+.letterItems>p:nth-child(5) {
+  top: 71%;
+  left: 65%;
+}
+.letterItems>p:nth-child(6) {
+  top: 82%;
+  left: 36%;
+}
+.letterItems>p:nth-child(7) {
+  top: 89%;
+  left: 48%;
+}
+.letterItems>p:nth-child(8) {
+  top: 95%;
+  left: 79%;
+}
+.letterItems>p:nth-child(9) {
+  top: 103%;
+  left: 43%;
+}
+
+
+
+
+
+/*________________ 7. 상품정보 영역  ________________*/
+/*580이 고정이미지, 1160이 작은썸네일 3개 스크롤 값 */
+.product-area {
+  height: 160vw;
+  /* height: auto; */
+}
+
+
+
+
+
+/* 상품영역별 왼쪽박스 */
+.product-area > .cont-box > .col-6 > .pullbox {
+  box-sizing: border-box;
+  padding: 40px 0;
+  top: 0px;
+  position: sticky;
+  width: 100%;
+  height: 100vh;
+}
+/* 상품영역별 각각의 이미지+캡션 박스 */
+
+.product-area > .cont-box .col-6 .imgbox {
+}
+
+/* 스티키부모박스 */
+.product-area > .cont-box .col-6 {
+  height: 100%;
+}
+
+
+.pullbox > img {
+  aspect-ratio: 1 / 2;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 0px 10px 40%;
+}
+
+.cont-box > .col-6 > .subbox {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.product-area:nth-child(1) > .cont-box > .col-6 > .subbox {
+  margin-top: -50vh;
+  justify-content: flex-end;
+  gap: 5%;
+}
+
+.product-area:nth-child(2) > .cont-box > .col-6 > .subbox {
+  height: 80%;
+  justify-content: space-around;
+}
+
+.product-area:nth-child(3) > .cont-box > .col-6 > .subbox {
+  justify-content: flex-start;
+  gap: 5%;
+}
+
+.product-area:nth-child(2) > .cont-box > .col-6 > .subbox a {
+  scale: 0.9;
+}
+
+.cont-box > .col-6 > .subbox a {
+  background-color: rgb(185, 218, 220);
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  /* 높이없어야 오토됨 */
+  width: 17vw;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.cont-box .imgbox:nth-of-type(1) > a {
+  background-color: var(--fill-color1);
+}
+
+.cont-box .imgbox:nth-of-type(2) > a {
+  background-color: var(--fill-color2);
+}
+
+.cont-box .imgbox:nth-of-type(3) > a {
+  background-color: var(--fill-color3);
+}
+
+.cont-box > .col-6 > .subbox a > img {
+  width: 100%;
+  filter: drop-shadow(rgba(0, 0, 0, 0.54) 5px 0px 4px);
+  transition: all 0.3s ease-in-out 0s;
+  scale: 1.1;
+}
+
+.cont-box > .col-6 > .subbox a > img:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(rgba(0, 0, 0, 0.74) 10px 0px 3px);
+}
+
+.cont-box > .col-6 > .subbox > .imgbox > p {
+  color: var(--sb-color);
+  text-align: center;
+  margin: 0px auto;
+  /* width: 20vw; */
+}
+
+.cont-box > .col-6 > .subbox > .imgbox > p:first-of-type {
+  white-space: nowrap;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* 서브박스 가상요소 */
+.cont-box > .col-6 > .subbox a::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.58);
+  width: 100%;
+  height: 100%;
+  scale: 0;
+  border-radius: 50%;
+  filter: blur(20px);
+  transform-origin: center center;
+  transition: all 0.2s ease 0s;
+}
+
+.cont-box > .col-6 > .subbox a:hover::before {
+  scale: 2;
+}
+
+/* 필박스가상요소  */
+.product-area > .cont-box > .col-6 > .pullbox::before {
+  width: 70%;
+  content: "Best choice BLEND!";
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 5vw;
+  font-weight: bold;
+  padding: 10px;
+  text-shadow: rgba(0, 0, 0, 0.51) 2px 2px 5px;
+  z-index: 1;
+}
+/* 가상요소 원 */
+.product-area > .cont-box > .col-6 > .pullbox::after {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: -11%;
+  height: 40vw;
+  background: url("../images/circle_text.png") center center / contain no-repeat;
+  filter: drop-shadow(rgb(51, 51, 51) 1px 0px 0px) opacity(0.7);
+  z-index: 1;
+  aspect-ratio: 1 / 1;
+  transform-origin: center center;
+  transition: all 1s ease-out 0s;
+  /* js에서 가상요소 트랜스폼주기!!! */
+  transform: var(--after-transform, rotate(0deg));
+}
+
+.product-area:nth-child(2) > .cont-box > .col-6 > .pullbox::before {
+  content: "Best choice DRINK!";
+}
+
+.product-area:nth-child(3) > .cont-box > .col-6 > .pullbox::before {
+  content: "Best choice FOOD!";
+}
+
+/* 2번째 상품목록 */
+#product-area > section:nth-child(2) > .cont-box {
+  flex-direction: row-reverse;
+}
+
+#product-area > section:nth-child(2) > .cont-box > .col-6 > .pullbox {
+  margin-top: -50vh;
+  width: 100%;
+}
+
+#product-area > section:nth-child(3) > .cont-box > .col-6 > .pullbox {
+  margin-top: -50vh;
+  width: 100%;
+}
+
+#product-area > section:nth-child(2) > .cont-box > .col-6 > .pullbox > img {
+  border-radius: 0px 0px 0px 40%;
+}
+
+/* 어두워지는 화면 */
+/*________________ 8. 스페셜 매장 ________________*/
+.store-Tit{
+  display: inline-block;
+  top: -6%;
+  position: relative;
+  color: #fff;
+  font-size: 5vw;
+  padding: 5%;
+  transition: 0.5s;
+  opacity: 0;
+}
+.store-Tit.sub {
+  font-size: 1vw;
+  top: 0%;
+  transition: 0.5s;
+  opacity: 0;
+}
+.special-store-area {
+  height: 1000px;
+}
+
+.special-store-area.inbox{
+  /* 컬러박스부모 */
+  /* display: flex; */
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+/* 카드 부모박스(플랙스) */
+.col-12.storebox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  margin-top: -35%;
+}
+
+/*카드 div박스 */
+.col-12.storebox>.store{
+  background-color: #ffffff00;
+  flex-shrink: 1;
+  flex-basis: 18%;
+  border-radius: 10%;
+  transition: .7s ease-in-out;
+  z-index: 1;
+  
+}
+/* 개별 모션전 */
+.col-12.storebox>.store:nth-child(1){
+transform: translate(450%,0) rotate(-30deg);
+}
+.col-12.storebox>.store:nth-child(2){
+transform: translate(340%,-5%) rotate(-25deg);
+}
+.col-12.storebox>.store:nth-child(3){
+transform: translate(230%,-5%) rotate(-20deg);
+}
+.col-12.storebox>.store:nth-child(4){
+transform: translate(120%,0%) rotate(-5deg);
+}
+
+/* 공통 div on 모션 */
+.col-12.storebox>.store.on .info{
+  transform: translate(0,0);
+  z-index: 100;
+}
+/* div 개별 on 모션 */
+.col-12.storebox>.store:nth-child(1).on{
+  transform: rotate(-25deg);
+}
+.col-12.storebox>.store:nth-child(2).on{
+  transform: rotate(-11deg) translate(0,-30%);
+}
+.col-12.storebox>.store:nth-child(3).on{
+  transform: rotate(11deg) translate(0,-30%);
+}
+.col-12.storebox>.store:nth-child(4).on{
+  transform: rotate(25deg);
+}
+
+/* 공통 호버 모션 */
+.col-12.storebox>.store.on:hover a {
+  box-shadow: 0px 0px 20px 5px rgb(0, 103, 24);
+  border-radius: 100px 100px 10% 10%;
+ scale: 1.2;
+
+}
+.col-12.storebox>.store.on:hover img {
+ scale: 1.2;
+}
+
+.col-12.storebox>.store.on:hover .info{
+  opacity: 1;
+  white-space: nowrap;
+}
+.col-12.storebox .info{
+  padding-top: 15%;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+  transition: 0.3s;
+  
+  pointer-events: none;
+}
+.col-12.storebox .info>p:first-of-type{
+font-size: 1.5rem;
+}
+.col-12.storebox .info span{
+  display: inline-block;
+  margin: 5% 2%;
+  padding: 3%;
+  border-radius: 30px 30px 30px 30px;
+  border: 2px solid #fff;
+}
+
+/* 카드div박스 이너 a */
+.col-12.storebox>.store>a{
+  transition: 0.3s;
+  display: block;
+  border-radius: 10%;
+  overflow: hidden;
+  
+
+}
+/* 카드내부 이미지 */
+.col-12.storebox>.store img{
+aspect-ratio: 181/266;
+width: 100%;
+transition: 0.3s;
+}
+
+.colorbox{
+  top: 0;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  transform: scale(0);
+  border-radius: 50%;
+  opacity: 1;
+  transition: 0.5s;
+  filter:blur(30px);
+  /* 스크롤생겨서 걍왼쪽에붙임 오버플로히든주기 복잡함 */
+  translate: -15%;
+}
+.col-12.storebox>.store.on:hover~.colorbox{
+  transform: scale(1.3);
+  opacity: 1;
+}
+/* 호버시 배경변겅 */
+.col-12.storebox>.store:nth-child(1).on:hover~.colorbox{
+  background-color: #005a0550;
+}
+.col-12.storebox>.store:nth-child(2).on:hover~.colorbox{
+  background-color: #160447a2;
+}
+.col-12.storebox>.store:nth-child(3).on:hover~.colorbox{
+  background-color: #3f4fff42;
+}
+.col-12.storebox>.store:nth-child(4).on:hover~.colorbox{
+  background-color: #ff3fa93b;
+}
+/* 스페셜매장 최하단 p,버튼 */
+.bottom-Tit{
+  position: absolute;
+  top: 78%;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  opacity: 0;
+}
+
+.bottom-Tit a{
+  
+box-shadow: 0px 0px 30px gainsboro;
+  
+position: relative;
+  
+display: inline-block;
+  
+background-color: #17171738;
+  
+color: #fff;
+  
+margin-top: 5%;
+  
+line-height: 150%;
+  
+border-radius: 100px;
+  
+font-weight: bold;
+  
+font-size: 3rem;
+  
+padding: 0 5%;
+  
+border: none;
+  
+transition: 0.3s;
+}
+
+.bottom-Tit a:before{
+  z-index: -1;
+  background: linear-gradient(45deg, #2ba1f5, #d742e7, #affff5);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: 5%;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  animation: borderAni 2s linear infinite alternate;
+}
+.bottom-Tit>div{
+  transition: 0.4s;
+}
+.bottom-Tit>div:hover{
+  scale: 1.1;
+}
+
+@keyframes borderAni {
+  0% {
+    background-size: 100% 1000%; /* 배경 이미지의 크기를 초기 크기로 설정 */
+  }
+  100% {
+    background-size: 1000% 100%; /* 배경 이미지의 크기를 두 배로 설정하여 이동 */
+  }
+}
+/*________________ 9. 하단 영역 ________________*/
+/* common.css */
